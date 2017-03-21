@@ -18,18 +18,52 @@ public class Main {
         System.out.print("Username: ");
         String usr = input.next(); // getting a String value
         System.out.print("Password: ");
-        try {
-            Console console = System.console();
-            char[] pwd = console.readPassword();
-            getFriendsList(usr, pwd.toString());
-            if ((console = System.console()) != null &&
-                    (pwd = console.readPassword("[%s]", "Password:")) != null) {
-                java.util.Arrays.fill(pwd, ' ');
+        String pwd = input.next();
+//        try {
+//            Console console = System.console();
+//            char[] pwd = console.readPassword();
+//
+//            if ((console = System.console()) != null &&
+//                    (pwd = console.readPassword("[%s]", "Password:")) != null) {
+//                java.util.Arrays.fill(pwd, ' ');
+//            }
+//        } catch (Exception ex) {
+//            String pwd = input.next();
+//            getFriendsList(usr, pwd);
+//            pwd = " ";
+//        }
+        int option = -1;
+        while(option!=0){
+            System.out.println("----------------------------");
+            System.out.println("Sychan Utilities\n");
+            System.out.print("Options:\n(1)getOnlineFriends\n(2)setStatus(offline/online/away)\n(3)setStatusOptions\n(4)autoReply\n(5)sendMessage\n(0) quit\n");
+            System.out.print("----------------------------\n> ");
+            option = input.nextInt();
+            switch (option){
+                case 1:
+                    getFriendsList(usr, pwd);
+                    break;
+                case 2:
+                    System.out.print("offline/online/away");
+                    String status = input.next();
+                    setStatus(usr,pwd,status);
+                    break;
+                case 3:
+                    setStatusOptions(usr, pwd);
+                    break;
+                case 4:
+                    autoReply(usr, pwd);
+                    break;
+                case 5:
+                    System.out.print("Recipient: ");
+                    String recipient = input.next();
+                    System.out.print("Message: ");
+                    String message = input.next();
+                    System.out.print("Number of times: ");
+                    Integer no = input.nextInt();
+                    sendMessage(usr,pwd,recipient,message,no);
+                    break;
             }
-        } catch (Exception ex) {
-            String pwd = input.next();
-            getFriendsList(usr, pwd);
-            pwd = " ";
         }
 
 
@@ -52,13 +86,12 @@ public class Main {
 //            System.out.println("Normal Leaves: " + status.getNormalLeaves());
 //            // ...
 
-            for (final FriendGroup g : api.getFriendGroups()) {
-                System.out.println("Group: " + g.getName()); // Print out name
+            for (final Friend g : api.getOnlineFriends()) {
+                System.out.println("Friend: " + g.getName()); // Print out name
                 // of group
-                for (final Friend f : g.getFriends()) {
-                    System.out.println("Friend: " + f.getName());
-                }
             }
+
+            api.disconnect();
 
 //            // Example 2: Set a custom status
 //            final LolStatus newStatus = new LolStatus();
@@ -77,7 +110,7 @@ public class Main {
         }
     }
 
-    private void setStatus(String usr, String pwd, String status) {
+    private static void setStatus(String usr, String pwd, String status) {
         final LolChat api = new LolChat(ChatServer.NA2,
                 FriendRequestPolicy.ACCEPT_ALL, new RiotApiKey("32c167c9-956d-42ff-802a-ea075b81634e",
                 RateLimit.DEFAULT));
@@ -90,9 +123,10 @@ public class Main {
             case "away":
                 api.setChatMode(ChatMode.AWAY);
         }
+        api.disconnect();
     }
 
-    private void setStatusOptions(String usr, String pwd) {
+    private static void setStatusOptions(String usr, String pwd) {
         final LolChat api = new LolChat(ChatServer.NA2,
                 FriendRequestPolicy.ACCEPT_ALL, new RiotApiKey("32c167c9-956d-42ff-802a-ea075b81634e",
                 RateLimit.DEFAULT));
@@ -105,6 +139,7 @@ public class Main {
             newStatus.setGameQueueType(Queue.RANKED_TEAM_5x5);
             api.setStatus(newStatus);
         }
+        api.disconnect();
     }
 
     private static void autoReply(String usr, String pwd) {
@@ -122,6 +157,37 @@ public class Main {
                 }
             });
         }
+    }
+
+    private static void sendMessage(String usr, String pwd, String username, String message, int num){
+        final LolChat api = new LolChat(ChatServer.NA2,
+                FriendRequestPolicy.ACCEPT_ALL, new RiotApiKey("32c167c9-956d-42ff-802a-ea075b81634e",
+                RateLimit.DEFAULT));
+        if (api.login(usr, pwd)) {
+            Friend f;
+            f = api.getFriendByName(username);
+            if(f != null && f.isOnline()) {
+                for(int i = 0; i<num; i++){
+                    f.sendMessage(message);
+                    System.out.print("MSG -> " + username + ": " + i + "\r");
+                }
+            }
+        }
+        api.disconnect();
+    }
+
+    private static void sendMessage(String usr, String pwd, String username, String message){
+        final LolChat api = new LolChat(ChatServer.NA2,
+                FriendRequestPolicy.ACCEPT_ALL, new RiotApiKey("32c167c9-956d-42ff-802a-ea075b81634e",
+                RateLimit.DEFAULT));
+        if (api.login(usr, pwd)) {
+            Friend f;
+            f = api.getFriendByName(username);
+            if(f != null && f.isOnline()) {
+                    f.sendMessage(message);
+            }
+        }
+        api.disconnect();
     }
 }
 
