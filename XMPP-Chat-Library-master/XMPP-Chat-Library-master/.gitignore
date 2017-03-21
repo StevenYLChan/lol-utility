@@ -1,0 +1,14 @@
+*.class
+
+# Package Files #
+*.war
+*.ear
+.classpath
+.project
+/.settings
+properties
+/bin
+/doc
+/releases
+/target
+/html

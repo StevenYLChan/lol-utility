@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="lolchatapi-1.2.9-with-dependencies">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lolchatapi-1.2.9-with-dependencies.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
