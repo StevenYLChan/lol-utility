@@ -32,6 +32,7 @@ public class Main {
 //            getFriendsList(usr, pwd);
 //            pwd = " ";
 //        }
+
         int option = -1;
         while(option!=0){
             System.out.println("----------------------------");
@@ -110,21 +111,21 @@ public class Main {
         }
     }
 
-    private static void setStatus(String usr, String pwd, String status) {
-        final LolChat api = new LolChat(ChatServer.NA2,
-                FriendRequestPolicy.ACCEPT_ALL, new RiotApiKey("32c167c9-956d-42ff-802a-ea075b81634e",
-                RateLimit.DEFAULT));
-        switch (status) {
-            case "offline":
-                api.setOffline();
-                break;
-            case "online":
-                api.setOnline();
-            case "away":
-                api.setChatMode(ChatMode.AWAY);
-        }
-        api.disconnect();
-    }
+//    private static void setStatus(String usr, String pwd, String status) {
+//        final LolChat api = new LolChat(ChatServer.NA2,
+//                FriendRequestPolicy.ACCEPT_ALL, new RiotApiKey("32c167c9-956d-42ff-802a-ea075b81634e",
+//                RateLimit.DEFAULT));
+//        switch (status) {
+//            case "offline":
+//                api.setOffline();
+//                break;
+//            case "online":
+//                api.setOnline();
+//            case "away":
+//                api.setChatMode(ChatMode.AWAY);
+//        }
+//        api.disconnect();
+//    }
 
     private static void setStatusOptions(String usr, String pwd) {
         final LolChat api = new LolChat(ChatServer.NA2,
@@ -159,22 +160,22 @@ public class Main {
         }
     }
 
-    private static void sendMessage(String usr, String pwd, String username, String message, int num){
-        final LolChat api = new LolChat(ChatServer.NA2,
-                FriendRequestPolicy.ACCEPT_ALL, new RiotApiKey("32c167c9-956d-42ff-802a-ea075b81634e",
-                RateLimit.DEFAULT));
-        if (api.login(usr, pwd)) {
-            Friend f;
-            f = api.getFriendByName(username);
-            if(f != null && f.isOnline()) {
-                for(int i = 0; i<num; i++){
-                    f.sendMessage(message);
-                    System.out.print("MSG -> " + username + ": " + i + "\r");
-                }
-            }
-        }
-        api.disconnect();
-    }
+//    private static void sendMessage(String usr, String pwd, String username, String message, int num){
+//        final LolChat api = new LolChat(ChatServer.NA2,
+//                FriendRequestPolicy.ACCEPT_ALL, new RiotApiKey("32c167c9-956d-42ff-802a-ea075b81634e",
+//                RateLimit.DEFAULT));
+//        if (api.login(usr, pwd)) {
+//            Friend f;
+//            f = api.getFriendByName(username);
+//            if(f != null && f.isOnline()) {
+//                for(int i = 0; i<num; i++){
+//                    f.sendMessage(message);
+//                    System.out.print("MSG -> " + username + ": " + i + "\r");
+//                }
+//            }
+//        }
+//        api.disconnect();
+//    }
 
     private static void sendMessage(String usr, String pwd, String username, String message){
         final LolChat api = new LolChat(ChatServer.NA2,
