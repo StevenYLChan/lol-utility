@@ -82,7 +82,7 @@ public class Listeners {
         while (option != 0) {
             System.out.println("----------------------------");
             System.out.println("Sychan LoL Utilities [AR: " + autoReplyFlag + "]\n");
-            System.out.print("Options:\n(1)getOnlineFriends\n(2)sendMessage\n(3)reply\n(4)sendToLastSent\n(5)autoReply\n(6)queryUser\n(7)getState\n(8)setStatus(offline/online/away)\n(9)setStatusOptions\n(0)quit\n");
+            System.out.print("Options:\n(1)getOnlineFriends\n(2)sendMessage\n(3)reply\n(4)sendToLastSent\n(5)autoReply\n(6)queryUser\n(7)getState\n(8)setStatus\n(9)setStatusOptions\n(0)quit\n");
             System.out.print("----------------------------\n> ");
             option = input.nextInt();
             switch (option) {
