@@ -2,12 +2,12 @@
 
 A utility application that allows you to interact with the League of Legends Chat. You will need to put in your riot api key in the code in order to get full functionality.
 
-Program can be run by going to 'out/artifacts/lol_utility_jar', and typing in 'java -jar lol-utility.jar'
+> Program can be run by going to 'out/artifacts/lol_utility_jar', and typing in 'java -jar lol-utility.jar'
 
-Note: With the introduction of the new league client, many of the custom chat settings such as 'setStatus, setStatusOptions' will no longer work.
+*Note: With the introduction of the new league client, many of the custom chat settings such as 'setStatus, setStatusOptions' will no longer work.*
 
 The application will automatically display friend list status changes and incoming messages.
-
+***
 Other Functions available:
 
  * getOnlineFriends - gets your online friends
