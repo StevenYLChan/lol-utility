@@ -10,24 +10,24 @@ The application will automatically display friend list status changes and incomi
 
 Other Functions available:
 
-getOnlineFriends - gets your online friends
+  getOnlineFriends - gets your online friends
 
-sendMessage - send a message to a particular player x number of times
+  sendMessage - send a message to a particular player x number of times
 
-reply - sends a message to the person that last sent you a message. Will return 'N/A' if nobody has sent you a message
+  reply - sends a message to the person that last sent you a message. Will return 'N/A' if nobody has sent you a message
 
-sendToLastSent - sends a message to the person that you last sent a message to. Will return 'N/A' if you have not sent a previous message yet
+  sendToLastSent - sends a message to the person that you last sent a message to. Will return 'N/A' if you have not sent a previous message yet
 
-autoReply - Automatically replies to anybody that sends you a message with a default message
+  autoReply - Automatically replies to anybody that sends you a message with a default message
 
-queryUser - Get summoner information for the particular user
+  queryUser - Get summoner information for the particular user
 
-getState - get the current state of your chat
+  getState - get the current state of your chat
 
-setStatus - sets your status to available/away/offline
+  setStatus - sets your status to available/away/offline
 
-setStatusOptions - sets your status to predefined values in the code
+  setStatusOptions - sets your status to predefined values in the code
 
-quit - quits the application
+  quit - quits the application
 
 
